@@ -1,0 +1,25 @@
+﻿<div class="product-card">
+    <div class="image-container">
+        <NavLink href="/counter">
+            <img src=@Product.Image alt="Image" class="image">
+        </NavLink>
+    </div>
+    <div class="data-container">
+        <NavLink href="/counter">
+            <div class="product-name">
+                @Product.ProductName
+            </div>
+        </NavLink>
+        <div class="info-row">
+            <div class="price">
+                @Product.Price&thinsp;₽
+            </div>
+            <div class="quantity">
+                В наличии: <br /> <i>@Product.StockQuantity шт.</i>
+            </div>
+        </div>
+    </div>
+    <button class="cart-button">
+        <i class="fa fa-shopping-cart"></i> В корзинy
+    </button>
+</div>

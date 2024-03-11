@@ -1,0 +1,72 @@
+﻿@page "/"
+
+@using BlazorApp4.Models
+@inject BlazorApp4.Services.ProductService productService
+
+<PageTitle>OnlineShopApp - каталог</PageTitle>
+
+<!--
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>ProductName</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>StockQuantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in products)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.ProductName</td>
+                <td>@product.Price</td>
+                <td>@product.Image</td>
+                <td>@product.Description</td>
+                <td>@product.StockQuantity</td>
+            </tr>
+        }
+    </tbody>
+</table> -->
+
+@for (int i = 0; i < products.Count / 4; ++i)
+{
+    <div class="product-row">
+        @for (int j = 0; j < 4; ++j)
+        {
+            <ProductCard Product=@products[4 * i + j] />
+        }
+    </div>
+}
+
+<div class="product-row">
+    @for (int j = 0; j < 2; ++j)
+    {
+        <ProductCard Product=@products[0] />
+    }
+
+    <div style="width: 300px;height: 100px;visibility: hidden;"></div>
+    <div style="width: 300px;height: 100px;visibility: hidden;"></div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination pg-blue">
+        <li class="page-item disabled">
+            <span class="page-link">Previous</span>
+        </li>
+        <li class="page-item active">
+            <span class="page-link">
+                1
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        <li class="page-item"><a class="page-link">2</a></li>
+        <li class="page-item"><a class="page-link">3</a></li>
+        <li class="page-item">
+            <a class="page-link">Next</a>
+        </li>
+    </ul>
+</nav>
