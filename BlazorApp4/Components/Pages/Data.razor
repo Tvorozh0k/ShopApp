@@ -1,0 +1,74 @@
+﻿@page "/data"
+
+@using BlazorApp4.Models
+@inject BlazorApp4.Services.UserService userService
+@inject BlazorApp4.Services.AccountService accountService
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Patronymic</th>
+            <th>PhoneNumber</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
+                <td>@user.Patronymic</td>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>UserId</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in accounts)
+        {
+            <tr>
+                <td>@account.Id</td>
+                <td>@account.Login</td>
+                <td>@account.Password</td>
+                <td>@account.UserId</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<User> users = new List<User>();
+    List<Account> accounts = new List<Account>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetUsers();
+        GetAccount();
+    }
+
+    private void GetUsers()
+    {
+        users = userService.GetAll();
+    }
+
+    private void GetAccount()
+    {
+        accounts = accountService.GetAll();
+    }
+}

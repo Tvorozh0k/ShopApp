@@ -11,6 +11,8 @@ builder.Services.AddRazorComponents()
 builder.Services.Configure<MongoDbSettings>(
     builder.Configuration.GetSection("MongoDbSettings"));
 
+builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<AccountService>();
 builder.Services.AddSingleton<ProductService>();
 
 var app = builder.Build();
